@@ -51,3 +51,41 @@ function promptUser() {
         },
     ]);
 }
+
+function generateMarkdown(response) {
+    return `
+# ${response.title}
+
+# Table of Contents
+
+- [Description](#description)
+- [Installation](#installation)
+- [Usage](#usage) 
+- [Contributing](#contributing)
+- [License](#license) 
+- [Questions](#questions)
+
+## Description:
+![License](https://img.shields.io/badge/License-${response.license}-blue.svg "License Badge")
+
+    ${response.description}
+## Installation:
+    ${response.installation}
+## Usage:
+    ${response.usage}
+## Contributing:
+    ${response.contribution}
+## License:
+    For more information about the License, click on the link below.
+    
+- [License](https://opensource.org/licenses/${response.license})
+
+## Questions:
+    For questions about the Generator:
+
+- [GitHub Profile](https://github.com/${response.username})
+
+- [Email]: ${response.email}.
+
+`;
+}
