@@ -1,5 +1,8 @@
 const inquirer = require('inquirer');
 const fs = require('fs');
+const util = require('util');
+
+const writeFileAsync = util.promisify(fs.writeFile);
 
 // questions to generate readme with
 function promptUser() {
@@ -89,3 +92,19 @@ function generateMarkdown(response) {
 
 `;
 }
+// function to initialize program
+async function init() {
+    try {
+        const response = await promptUser();
+
+        const readMe = generateMarkdown(response);
+
+        await writeFileAsync("README.md", readMe);
+        console.log("Success!");
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+// function call to initialize program
+init();
